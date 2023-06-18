@@ -1,15 +1,17 @@
 const express = require('express')
 const path = require('path');
 const app = express()
-const port = 3000
+require('dotenv').config();
+const port = process.env.PORT
 const validateJWT = require('./utils/jwt')
 const cors = require('cors');
-
 app.use(cors())
 app.use(express.json());
-//app.use(validateJWT);
+app.use(validateJWT);
 
 
+app.use(express.static(process.cwd()+"/../wisp_front/dist/wisp_front/"));
+console.log(process.cwd()+"/../wisp_front/dist/wisp_front/index.html")
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use("/api/clientes", require('./routes/cliente'));
@@ -21,5 +23,8 @@ app.use("/api/pagos", require('./routes/pagos'));
 app.use("/api/test_services", (req,res)=>{
     res.json({msj:"servicios activos"})
 });
+app.get('*', (req,res) => {
+    res.sendFile(process.cwd()+"/../wisp_front/dist/wisp_front/index.html")
+  });
 app.listen(port, () => {});
 

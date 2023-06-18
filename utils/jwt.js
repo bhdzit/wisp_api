@@ -2,10 +2,10 @@
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const validateJWT = function (req, res, next) {
-    
+
     // Put some preprocessing here.
     let { url } = req;
-    if (url == "/api/auth/login") {
+    if (!url.includes("api") || url == "/api/auth/login") {
         next();
         return;
     }
@@ -17,7 +17,7 @@ const validateJWT = function (req, res, next) {
         if (req.headers.authorization != undefined) next();
 
     } catch (error) {
-        res.status(403).send({ msg: "Parece que no tienes permiso"});
+        res.status(403).send({ msg: "Parece que no tienes permiso" });
     }
 
 }
