@@ -10,8 +10,8 @@ app.use(express.json());
 app.use(validateJWT);
 
 
-app.use(express.static(process.cwd()+"/../wisp_front/dist/wisp_front/"));
-console.log(process.cwd()+"/../wisp_front/dist/wisp_front/index.html")
+app.use(express.static(process.env.LOCAL_FRONT+"/wisp_front/dist/wisp_front/"));
+console.log(process.env.LOCAL_FRONT+"/wisp_front/dist/wisp_front/index.html")
 app.use(express.static(path.join(__dirname,'public')));
 
 app.use("/api/clientes", require('./routes/cliente'));
@@ -24,7 +24,7 @@ app.use("/api/test_services", (req,res)=>{
     res.json({msj:"servicios activos"})
 });
 app.get('*', (req,res) => {
-    res.sendFile(process.cwd()+"/../wisp_front/dist/wisp_front/index.html")
+    res.sendFile(process.env.LOCAL_FRONT+"/wisp_front/dist/wisp_front/index.html")
   });
 app.listen(port, () => {});
 
