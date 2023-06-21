@@ -1,5 +1,5 @@
 const { readFileSync } = require('fs');
-
+require('dotenv').config();
 const getClietneName = (pagos) => {
 
   return pagos[0]?.clienteVO.cliente.toUpperCase();
@@ -109,7 +109,7 @@ const pdfView = (pagos) => {
     <div  style="margin: 0px;width: 190px;">
 
 <center>
-  <img style="width:100px" src="data:image/png;base64,${readFileSync('C:\\Users\\BRYAN\\wisp-api\\public\\logo2.png').toString('base64')}">
+  <img style="width:100px" src="data:image/png;base64,${readFileSync(process.env.LOCAL_FRONT+"/dist/wisp_front/assets/img/logo2.png").toString('base64')}">
     <br>
     <br>
     <label>ZONA ON</label><br>
