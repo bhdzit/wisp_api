@@ -1,4 +1,4 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
+const { Sequelize, DataTypes, Model, Op } = require('sequelize');
 const sequelize = require('./index');
 const Cliente = require('./cliente');
 const Paquete = require('./paquete');
@@ -34,14 +34,20 @@ Pago.init({
   sequelize,
   modelName: 'Pago',
 });
-
-Cliente.hasMany(Cliente, { foreignKey: 'id' })
+Pago.addScope('defaultScope', {
+  where: {
+    [Op.or]: [
+      { estatus: true},
+      { estatus: null }
+    ]
+    
+  }, order: [['id', 'ASC']],
+}, { override: true });
+Cliente.hasMany(Cliente, { foreignKey: 'id' });
 Pago.hasMany(Extra,{ foreignKey: 'pago', as:"extraVO" })
 Pago.belongsTo(Cliente, { foreignKey: 'cliente', as:"clienteVO" });
 Pago.belongsTo(Paquete, { foreignKey: 'paquete', as:"paqueteVO" });
-Pago.addScope('defaultScope', {
-  order: [['id', 'ASC']],
-}, { override: true })
+
 
 module.exports = Pago;
 

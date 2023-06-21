@@ -63,6 +63,22 @@ const getPagosDelMes = async (req, res) => {
     }
 
 }
+const eliminarPago = async (req, res) => {
+    let id = req.body.id;
+    try {
+        await Pago.update({ estatus: false }, {
+            where: {
+                id: id
+            }
+        });
+
+        res.send({"msj":"Se elimino el pago"})
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+
+}
 
 const validarReferencia = async (req, res) => {
     try {
@@ -159,5 +175,6 @@ module.exports = {
     getPagosDeCliente,
     validarReferencia,
     getPagosDelMes,
-    generarPDF
+    generarPDF,
+    eliminarPago
 }
