@@ -17,7 +17,7 @@ const validateJWT = function (req, res, next) {
         if (req.headers.authorization != undefined) next();
 
     } catch (error) {
-        res.status(403).send({ msg: "Parece que no tienes permiso" });
+        res.status(403).send({ msg: "Parece que no tienes permiso 21/06/2023" });
     }
 
 }
