@@ -21,7 +21,7 @@ app.use("/api/sector", require('./routes/sector'));
 app.use("/api/paquetes", require('./routes/paquete'));
 app.use("/api/pagos", require('./routes/pagos'));
 app.use("/api/test_services", (req,res)=>{
-    res.json({msj:"servicios activos"})
+    res.json({msj:"servicios activos 21/06/2023"})
 });
 app.get('*', (req,res) => {
     res.sendFile(process.env.LOCAL_FRONT+"/dist/wisp_front/index.html")
