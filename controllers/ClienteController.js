@@ -1,3 +1,4 @@
+const { Sequelize } = require("sequelize");
 const Cliente = require("../Models/cliente");
 const Paquete = require("../Models/paquete");
 const Sector = require("../Models/sector");
@@ -14,13 +15,16 @@ const getClientes = async (req, res) => {
         },
         {
             model: Paquete, as: "paqueteVO" // <---- HERE
-        }]
+        }],
     });
     res.send(Clientes)
 }
 
 const saveCliente = async (req, res) => {
     try {
+        fechaStr= req.body.primer_pago.split("-");
+        let fecha = new Date(fechaStr[0],(fechaStr[1]-1),fechaStr[2])
+        req.body.primer_pago=fecha;
         await Cliente.create(req.body);
         const Clientes = await Cliente.findAll({
             order: [
@@ -44,6 +48,9 @@ const saveCliente = async (req, res) => {
 const updateCliente = async (req, res) => {
 
     let id = req.body.id;
+    fechaStr= req.body.primer_pago.split("-");
+    let fecha = new Date(fechaStr[0],(fechaStr[1]-1),fechaStr[2])
+    req.body.primer_pago=fecha;
     try {
         await Cliente.update(req.body, {
             where: {
