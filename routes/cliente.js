@@ -22,10 +22,8 @@ router.post('/saveCliente', [
 
 router.put('/updateCliente', [
     body("cliente", "El Cliente es requerido").notEmpty(),
-    body('usuario', 'El Usuario o IP es obligatorio').isString().notEmpty(),
+    body('contrato', 'El Contrato es obligatorio').isBoolean().notEmpty(), 
     body('tel1', 'El Tel 1 obligatorio').isString().notEmpty(),
-    body('tel2', 'El Tel 2 obligatorio').isString().notEmpty(),
-    body('sector', 'El Sector es obligatorio').notEmpty(),
     body('paquete', 'El Paquete es obligatorio').notEmpty(),
     body('primer_pago', 'El Primer Pago es obligatorio').isString().notEmpty(),
     body('lat', 'La Ubiacion  es obligatoria').isString().notEmpty(),
