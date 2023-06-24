@@ -28,10 +28,6 @@ const realizarPagos = async (req, res) => {
             }));
 
         }
-
-
-        //const Pagos = await Pago.findAll();
-        console.log(listaDePagos)
         res.send(listaDePagos)
     } catch (error) {
         console.log(error);
@@ -54,7 +50,17 @@ const getPagosDelMes = async (req, res) => {
     try {
         let mesPagado = req.query.mesPagado;
         const Pagos = await Pago.findAll({
-            where: { mesPagado: mesPagado }
+            where: { mesPagado: mesPagado },
+            include: [
+                {
+                    model: Cliente, as: "clienteVO" // <---- HERE
+                },
+                {
+                    model: Paquete, as: "paqueteVO" // <---- HERE
+                },
+                {
+                    model: Extra, as: "extraVO" // <---- HERE
+                }],
         });
         res.send(Pagos)
     } catch (error) {
@@ -142,7 +148,7 @@ const generarPDF = async (req, res) => {
         console.log(listaDePagos);
 
         var contenido = pdfView(listaDePagos);
-        await pdf.create(contenido, { width: "170px", height: tamanoDePantalla(listaDePagos), format: null }).toBuffer(function (err, buffer) {
+        await pdf.create(contenido, { width: "5.5cm", height: tamanoDePantalla(listaDePagos), format: null }).toBuffer(function (err, buffer) {
             if (err) return res.send(err);
             res.type('pdf');
             res.end(buffer, 'binary');
