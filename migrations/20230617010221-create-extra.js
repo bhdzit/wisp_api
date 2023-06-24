@@ -18,7 +18,7 @@ module.exports = {
       pago:{
         type:Sequelize.INTEGER,
         references: {
-          model:  'Extras',
+          model:  'Pagos',
           key: 'id'
         },
         allowNull: false
