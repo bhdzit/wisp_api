@@ -10,7 +10,6 @@ router.get('/getClientesSuspendidos', getClientesSuspendidos);
 router.post('/saveCliente', [
     body("cliente", "El Cliente es requerido").notEmpty(),
     body('contrato', 'El Contrato es obligatorio').isBoolean().notEmpty(), 
-    body('tel1', 'El Tel 1 obligatorio').isString().notEmpty(),
     body('torre', 'La Torres es obligatorio').isString().notEmpty(),
     body('paquete', 'El Paquete es obligatorio').isString().notEmpty(),
     body('primer_pago', 'El Primer Pago es obligatorio').isString().notEmpty(),
@@ -23,7 +22,6 @@ router.post('/saveCliente', [
 router.put('/updateCliente', [
     body("cliente", "El Cliente es requerido").notEmpty(),
     body('contrato', 'El Contrato es obligatorio').isBoolean().notEmpty(), 
-    body('tel1', 'El Tel 1 obligatorio').isString().notEmpty(),
     body('paquete', 'El Paquete es obligatorio').notEmpty(),
     body('primer_pago', 'El Primer Pago es obligatorio').isString().notEmpty(),
     body('lat', 'La Ubiacion  es obligatoria').isString().notEmpty(),
