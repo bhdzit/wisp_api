@@ -5,6 +5,7 @@ const Cliente = require("../Models/cliente");
 const pdf = require('html-pdf');
 const { pdfView } = require("../utils/pdfView");
 const Paquete = require("../Models/paquete");
+const Torre = require("../Models/torre");
 const realizarPagos = async (req, res) => {
     try {
         let listaDePagos = [];
@@ -69,6 +70,17 @@ const getPagosDelMes = async (req, res) => {
     }
 
 }
+
+const getClientesParaPago = async (req, res) => {
+    try {
+        const Pagos = await Cliente.scope("allClientes").findAll();
+        res.send(Pagos)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+}
+
 const eliminarPago = async (req, res) => {
     let id = req.body.id;
     try {
@@ -78,7 +90,7 @@ const eliminarPago = async (req, res) => {
             }
         });
 
-        res.send({"msj":"Se elimino el pago"})
+        res.send({ "msj": "Se elimino el pago" })
     } catch (error) {
         console.log(error);
         res.status(500).send(error);
@@ -131,7 +143,7 @@ const generarPDF = async (req, res) => {
                     [Op.gt]: fechaDePago,
                     [Op.lt]: fechaFin
                 }
-            }, 
+            },
             include: [
                 {
                     model: Cliente, as: "clienteVO" // <---- HERE
@@ -163,11 +175,11 @@ const generarPDF = async (req, res) => {
 
 const tamanoDePantalla = (pagos) => {
     let tamano = 100;
-    let numOfExtras=pagos.reduce(
+    let numOfExtras = pagos.reduce(
         (accumulator, currentValue) => accumulator + (currentValue.extraVO.length * 1),
         0,
-      )
-    tamano += ((pagos.length + 1) * 90) +(numOfExtras*50) +100;
+    )
+    tamano += ((pagos.length + 1) * 90) + (numOfExtras * 50) + 100;
     return tamano + "px";
 }
 
@@ -182,5 +194,6 @@ module.exports = {
     validarReferencia,
     getPagosDelMes,
     generarPDF,
-    eliminarPago
+    eliminarPago,
+    getClientesParaPago
 }
