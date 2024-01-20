@@ -109,7 +109,7 @@ const pdfView = (pagos) => {
     <div  style="margin: 0px;width: 100%;">
 
 <center>
-  <img style="width:100px" src="data:image/png;base64,${readFileSync(process.env.LOCAL_FRONT+"/dist/wisp_front/assets/img/logo2.png").toString('base64')}">
+  <img style="width:100px" src="data:image/png;base64,${readFileSync(process.env.LOCAL_FRONT+"/assets/img/logo2.png").toString('base64')}">
     <br>
     <br>
     <label>ZONA ON</label><br>
