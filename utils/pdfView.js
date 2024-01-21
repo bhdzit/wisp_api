@@ -100,7 +100,7 @@ const pdfView = (pagos) => {
       margin:   5px;
     }
     label{
-      font-size: 15px;
+      font-size: 10px;
       margin:   5px;
     }
     </style>
