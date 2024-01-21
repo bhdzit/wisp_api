@@ -115,7 +115,7 @@ const pdfView = (pagos) => {
 
       <h5 style="border-top: 2px solid #000;border-bottom: 2px solid #000;" >COMPROBANTE DE PAGO</h5>
       <h5><b>${nombreDeCliente}<b/></h5>
-      <label style="font-size:10px; border-bottom: 2px solid #000;">Fecha de pago: ${fechaDelPAgo}</label>
+      <label style="font-size:8px; border-bottom: 2px solid #000;">Fecha de pago: ${fechaDelPAgo}</label>
       <p></p>
       ${pagosHtml} 
       <p></p>  
