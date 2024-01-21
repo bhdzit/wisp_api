@@ -98,6 +98,7 @@ const pdfView = (pagos) => {
     h5,h3{
       padding: 0;
       margin:   5px;
+      font-size: 8px;
     }
     label{
       font-size: 10px;
@@ -110,16 +111,11 @@ const pdfView = (pagos) => {
 
 <center>
   <img style="width:100px" src="data:image/png;base64,${readFileSync(process.env.LOCAL_FRONT+"/assets/img/logo2.png").toString('base64')}">
-    <br>
-    <br>
-    <label>ZONA ON</label><br>
-    <label>EMILIANO ZAPATA 22</label>
-    <br>
     <label>772 114 5890</label><br>
 
       <h5 style="border-top: 2px solid #000;border-bottom: 2px solid #000;" >COMPROBANTE DE PAGO</h5>
       <h5><b>${nombreDeCliente}<b/></h5>
-      <label style="font-size:16px; border-bottom: 2px solid #000;">Fecha de pago: ${fechaDelPAgo}</label>
+      <label style="font-size:10px; border-bottom: 2px solid #000;">Fecha de pago: ${fechaDelPAgo}</label>
       <p></p>
       ${pagosHtml} 
       <p></p>  
