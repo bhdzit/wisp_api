@@ -9,8 +9,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      referencia: {
+      color: {
         type: Sequelize.STRING
+      },
+      olt: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'OLTs',
+          key: 'id'
+        },
       },
       puerto: {
         type: Sequelize.STRING

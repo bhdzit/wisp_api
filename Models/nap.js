@@ -1,5 +1,6 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('./index');
+const OLT = require('./olt');
 class Nap extends Model {
   otherPublicField;
 }
@@ -10,8 +11,11 @@ Nap.init({
     autoIncrement: true,
     primaryKey: true
   },
-  referencia: {
+  color: {
     type: DataTypes.TEXT,
+  },
+  olt: {
+    type: DataTypes.INTEGER,
   },
   puerto: {
     type: DataTypes.TEXT,
@@ -29,5 +33,8 @@ Nap.init({
 }, {
   sequelize,
 });
+
+OLT.hasMany(OLT, { foreignKey: 'id' });
+Nap.belongsTo(OLT, { foreignKey: 'olt', as: "oltVO" });
 
 module.exports = Nap;
