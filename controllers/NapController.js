@@ -1,11 +1,15 @@
 const Nap = require("../Models/nap");
+const OLT = require("../Models/olt");
 
 const getNaps = async (req, res) => {
     const naps = await Nap.findAll({
         order: [
             // Will escape title and validate DESC against a list of valid direction parameters
             ['id', 'ASC'],
-        ]
+        ], 
+        include: [{
+            model: OLT, as: "oltVO" // <---- HERE
+        }]
     });
     res.send(naps)
 }
