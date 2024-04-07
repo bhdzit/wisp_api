@@ -17,7 +17,8 @@ const login = async (req, res = response) => {
         res.send({ msg: "Credenciales Incorrectas" });
 
     } catch (error) {
-        console.log(error)
+        console.log(error);
+        res.send({ msg: error });
     }
 
 

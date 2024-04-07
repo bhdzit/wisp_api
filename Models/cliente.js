@@ -15,7 +15,13 @@ Cliente.init({
   lat: DataTypes.STRING,
   lng: DataTypes.STRING,
   estatus: DataTypes.BOOLEAN,
-  primer_pago: DataTypes.DATE
+  primer_pago: DataTypes.DATE,
+  tipoConexion:DataTypes.INTEGER,
+  servicioExtra:DataTypes.BOOLEAN,
+  nap:DataTypes.INTEGER,
+  olt:DataTypes.INTEGER,
+  usuario:DataTypes.STRING,
+  password:DataTypes.STRING,
 }, {
   sequelize,
   modelName: 'Cliente',
