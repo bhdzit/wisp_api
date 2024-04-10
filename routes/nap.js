@@ -7,7 +7,8 @@ const { validarCampos } = require('../utils/validar-campos');
 
 router.get('/getNaps', getNaps);
 router.post('/saveNap', [
-    body('color', 'El nombre es obligatorio').isString().notEmpty(),
+    body('colorNAP', 'El color es obligatorio').isString().notEmpty(),
+    body('colorPuerto', 'El color es obligatorio').isString().notEmpty(),
     body('puerto', 'El nombre es obligatorio').isString().notEmpty(),
     body('numero', 'El nombre es obligatorio').isString().notEmpty(),
     body('lat', 'La lat es obligatorio').isNumeric().notEmpty(),
@@ -18,7 +19,8 @@ router.post('/saveNap', [
 
 router.put('/updateNap', [
     body("id","El id es requerido").notEmpty(),
-    body('color', 'El nombre es obligatorio').isString().notEmpty(),
+    body('colorNAP', 'El color es obligatorio').isString().notEmpty(),
+    body('colorPuerto', 'El color es obligatorio').isString().notEmpty(),
     body('puerto', 'El nombre es obligatorio').isString().notEmpty(),
     body('numero', 'El nombre es obligatorio').isString().notEmpty(),
     body('lat', 'La lat es obligatorio').isNumeric().notEmpty(),

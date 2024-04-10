@@ -11,7 +11,7 @@ Nap.init({
     autoIncrement: true,
     primaryKey: true
   },
-  color: {
+  colorNAP: {
     type: DataTypes.TEXT,
   },
   olt: {
@@ -28,7 +28,10 @@ Nap.init({
   },
   lng: {
     type: DataTypes.TEXT,
-  }
+  },
+  colorPuerto: {
+    type: DataTypes.TEXT,
+  },
 
 }, {
   sequelize,
